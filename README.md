@@ -20,10 +20,7 @@ mvn spring-boot:run
 
 ## Swagger
 
-The API documentation can be found at the link:
+The API documentation can be found at the link <http://localhost:8080/swagger-ui.html#/>
 
-```html
-http://localhost:8080/swagger-ui.html#/
-```
 
 ![](src/main/resources/img/Swagger.png)
