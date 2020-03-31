@@ -15,7 +15,7 @@
     <description>Project for Spring Boot - Person CRUD</description>
 
     <properties>
-        <java.version>11</java.version>
+        <java.version>13</java.version>
     </properties>
 
     <dependencies>
@@ -87,8 +87,8 @@
                     <artifactId>maven-compiler-plugin</artifactId>
                     <version>3.8.1</version>
                     <configuration>
-                        <release>11</release>
-                        <target>11</target>
+                        <release>13</release>
+                        <target>13</target>
                     </configuration>
                 </plugin>
             </plugins>
