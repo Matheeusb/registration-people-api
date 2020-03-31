@@ -1,1 +1,1 @@
-# Resgistration of People - API
+# Registration of People - API
