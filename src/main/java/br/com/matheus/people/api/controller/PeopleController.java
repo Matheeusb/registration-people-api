@@ -29,12 +29,13 @@ public class PeopleController {
     @GetMapping
     public List<PersonDTO> list() {
         List<Person> people = personRepository.findAll();
+
         return PersonDTO.convert(people);
     }
 
     @ApiOperation(value = "Get a single person by Id")
     @GetMapping("/{id}")
-    public ResponseEntity<PersonDTO> datail(@PathVariable Long id) {
+    public ResponseEntity<PersonDTO> detail(@PathVariable Long id) {
         Optional<Person> person = personRepository.findById(id);
         if (person.isPresent()) {
             return ResponseEntity.ok(new PersonDTO(person.get()));
@@ -49,8 +50,8 @@ public class PeopleController {
     public ResponseEntity<PersonDTO> create(@RequestBody @Valid PersonForm personForm, UriComponentsBuilder uriBuilder) {
         Person person = personForm.convert();
         personRepository.save(person);
-
         URI uri = uriBuilder.path("/people/{id}").buildAndExpand(person.getId()).toUri();
+
         return ResponseEntity.created(uri).body(new PersonDTO(person));
     }
 
@@ -61,6 +62,28 @@ public class PeopleController {
         Optional<Person> optional = personRepository.findById(id);
         if (optional.isPresent()) {
             Person person = personForm.update(id, personRepository);
+            return ResponseEntity.ok(new PersonDTO(person));
+        }
+
+        return ResponseEntity.notFound().build();
+    }
+
+    @ApiOperation(value = "Update a person`s data")
+    @PatchMapping("/{id}")
+    @Transactional
+    public ResponseEntity<PersonDTO> updateData(@PathVariable Long id, @RequestBody PersonForm personForm) {
+        Optional<Person> optional = personRepository.findById(id);
+        if (optional.isPresent()) {
+            Person person = optional.get();
+
+            if (personForm.getName() != null) {
+                person.setName(personForm.getName());
+            } else if (personForm.getEmail() != null) {
+                person.setEmail(personForm.getEmail());
+            } else {
+                person.setAge(personForm.getAge());
+            }
+
             return ResponseEntity.ok(new PersonDTO(person));
         }
 

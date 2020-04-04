@@ -22,7 +22,7 @@ public class Person {
     @NonNull
     private String name;
     @NonNull
-    private int age;
+    private Integer age;
     @NonNull
     private String email;
 }

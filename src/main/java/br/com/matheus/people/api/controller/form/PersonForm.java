@@ -15,7 +15,7 @@ public class PersonForm {
     private String name;
 
     @NotNull
-    private int age;
+    private Integer age;
 
     @NotNull @NotEmpty @Length(max = 25)
     private String email;

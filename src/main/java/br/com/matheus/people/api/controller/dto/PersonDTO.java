@@ -9,9 +9,9 @@ import java.util.stream.Collectors;
 @Data
 public class PersonDTO {
 
-    private long id;
+    private Long id;
     private String name;
-    private int age;
+    private Integer age;
     private String email;
 
     public PersonDTO(Person person) {
