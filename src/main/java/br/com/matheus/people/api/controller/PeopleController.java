@@ -80,9 +80,9 @@ public class PeopleController {
                 person.setName(personForm.getName());
             } else if (personForm.getEmail() != null) {
                 person.setEmail(personForm.getEmail());
-            } else {
+            } else if (personForm.getAge() > 0) {
                 person.setAge(personForm.getAge());
-            }
+            } else return ResponseEntity.badRequest().build();
 
             return ResponseEntity.ok(new PersonDTO(person));
         }
