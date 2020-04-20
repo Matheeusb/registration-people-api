@@ -5,19 +5,20 @@ import br.com.matheus.people.api.repository.PersonRepository;
 import lombok.Data;
 import org.hibernate.validator.constraints.Length;
 
+import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 
 @Data
 public class PersonForm {
 
-    @NotNull @NotEmpty @Length(max = 25)
+    @NotNull @NotEmpty @Length(max = 50)
     private String name;
 
     @NotNull
     private Integer age;
 
-    @NotNull @NotEmpty @Length(max = 25)
+    @NotNull @NotEmpty @Length(max = 50)
     private String email;
 
     public Person convert() {
