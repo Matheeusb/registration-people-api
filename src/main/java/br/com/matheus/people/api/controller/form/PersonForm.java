@@ -5,9 +5,10 @@ import br.com.matheus.people.api.repository.PersonRepository;
 import lombok.Data;
 import org.hibernate.validator.constraints.Length;
 
-import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Min;
 
 @Data
 public class PersonForm {
@@ -15,10 +16,10 @@ public class PersonForm {
     @NotNull @NotEmpty @Length(max = 50)
     private String name;
 
-    @NotNull
+    @NotNull @Min(1)
     private Integer age;
 
-    @NotNull @NotEmpty @Length(max = 50)
+    @NotNull @NotEmpty @Email @Length(max = 50)
     private String email;
 
     public Person convert() {
