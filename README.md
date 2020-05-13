@@ -24,3 +24,8 @@ The API documentation can be found at the link <http://localhost:8080/swagger-ui
 
 
 ![](src/main/resources/img/Swagger.png)
+
+## Links
+
+- [Registration of People - Client](https://github.com/Matheeusb/registration-people-api-client)
+- [Registration of People - Test](https://github.com/Matheeusb/registration-people-api-test)
