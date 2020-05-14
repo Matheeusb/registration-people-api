@@ -1,2 +1,2 @@
-web: java -jar target/registration-people-api-0.0.1-SNAPSHOT.jar
+mvn spring-boot:run
 heroku ps:scale web=1
