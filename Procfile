@@ -1,2 +1,2 @@
-mvn spring-boot:run
+web: mvn spring-boot:run
 heroku ps:scale web=1
