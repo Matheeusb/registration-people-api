@@ -19,11 +19,16 @@ import java.util.Optional;
 
 @Api(value = "People CRUD")
 @RestController
-@RequestMapping("/people")
+//@RequestMapping("/people")
 public class PeopleController {
 
     @Autowired
     private PersonRepository personRepository;
+
+    @GetMapping("/")
+    public String index() {
+        return "Hello there! I'm running.";
+    }
 
     @ApiOperation(value = "Get people")
     @GetMapping
