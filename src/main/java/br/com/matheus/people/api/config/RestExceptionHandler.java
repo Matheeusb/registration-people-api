@@ -1,6 +1,6 @@
 package br.com.matheus.people.api.config;
 
-import br.com.matheus.people.api.controller.dto.ErrorDTO;
+import br.com.matheus.people.api.controller.dto.ErrorResponseDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
 import org.springframework.context.i18n.LocaleContextHolder;
@@ -15,22 +15,19 @@ import java.util.ArrayList;
 import java.util.List;
 
 @RestControllerAdvice
-public class ErrorHandler {
+public class RestExceptionHandler {
 
     @Autowired
     private MessageSource messageSource;
 
     @ResponseStatus(code = HttpStatus.BAD_REQUEST)
     @ExceptionHandler(MethodArgumentNotValidException.class)
-    public List<ErrorDTO> handle(MethodArgumentNotValidException exception) {
-        List<ErrorDTO> dto = new ArrayList<>();
+    public List<ErrorResponseDTO> handle(MethodArgumentNotValidException exception) {
+        List<ErrorResponseDTO> dto = new ArrayList<>();
 
         List<FieldError> fieldErrors = exception.getBindingResult().getFieldErrors();
-        fieldErrors.forEach(e -> {
-            String mensagem = messageSource.getMessage(e, LocaleContextHolder.getLocale());
-            ErrorDTO erro = new ErrorDTO(e.getField(), mensagem);
-            dto.add(erro);
-        });
+        fieldErrors.forEach(e -> dto.add(new ErrorResponseDTO(e.getField(),
+                messageSource.getMessage(e, LocaleContextHolder.getLocale()))));
 
         return dto;
     }

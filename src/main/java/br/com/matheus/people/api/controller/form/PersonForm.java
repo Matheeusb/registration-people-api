@@ -3,23 +3,19 @@ package br.com.matheus.people.api.controller.form;
 import br.com.matheus.people.api.model.Person;
 import br.com.matheus.people.api.repository.PersonRepository;
 import lombok.Data;
-import org.hibernate.validator.constraints.Length;
 
-import javax.validation.constraints.Email;
-import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Min;
+import javax.validation.constraints.*;
 
 @Data
 public class PersonForm {
 
-    @NotNull @NotEmpty @Length(max = 50)
+    @NotNull @NotEmpty @Size(max = 50)
     private String name;
 
-    @NotNull @Min(1)
+    @NotNull @Positive
     private Integer age;
 
-    @NotNull @NotEmpty @Email @Length(max = 50)
+    @NotNull @NotEmpty @Email @Size(max = 50)
     private String email;
 
     public Person convert() {
